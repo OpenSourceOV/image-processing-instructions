@@ -7,7 +7,7 @@
 * ImageJ version 2 - download from [https://imagej.net/ImageJ2](https://imagej.net/Downloads)
 * OpenSourceOV ImageJ Toolbox - download the latest version from  [https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip](https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip)
 
-Before you start we recommend you read the [Memory Requirements](#memory-requirements) section to understand the memory requirements of image processing.
+Before you begin read the [Memory Requirements](#memory-requirements) section to understand the memory requirements of image processing.
 
 ## Instructions
 
