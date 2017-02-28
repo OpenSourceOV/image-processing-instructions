@@ -5,16 +5,16 @@
 Requirement | Additional information
 ---------|---------
 Folder of captured images|
-Laptop or desktop computer|With at least 4GB of RAM and a dual-core processor
+Computer|With at least 4GB of RAM and a dual-core processor
 ImageJ version 2| Download from [https://imagej.net/ImageJ2](https://imagej.net/Downloads)
 OpenSourceOV ImageJ scripts|Download the latest version from  [https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip](https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip)
 
 
 ## Instructions
 
-1. Follow the [ImageJ Installation Instructions](https://imagej.net/Downloads#Installation) to install ImageJ on the computer.
+1. Follow the [ImageJ Installation Instructions](https://imagej.net/Downloads#Installation) to install ImageJ.
 
-2. Follow the instructions at [https://github.com/OpenSourceOV/imagej-scripts](https://github.com/OpenSourceOV/imagej-scripts) to install the OSOV toolbox of scripts (don't forget to restart ImageJ).
+2. Follow the instructions at [https://github.com/OpenSourceOV/imagej-scripts](https://github.com/OpenSourceOV/imagej-scripts) to install the OSOV Toolbox in ImageJ (don't forget to restart ImageJ).
 
 3. Import the captured images as a stack using the Image Sequence import. Select the 'Convert to 8-bit Grayscale' option.
 
@@ -127,7 +127,7 @@ OpenSourceOV ImageJ scripts|Download the latest version from  [https://github.co
     The first thing to do is arrange all three windows - the original stack, the image difference stack and the extracted particles stack (the one to be cleaned) - and synchronise them so as you progress through one they all progress.
 
     ![](./images/example-one/18.jpg)
-    
+
     ![](./images/example-one/19.jpg)
     
     **Work through each slice**
