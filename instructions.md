@@ -2,12 +2,10 @@
 
 ## What you'll need
 
-Requirement | Additional information
----------|---------
-Folder of captured images|
-Computer|With at least 4GB of RAM and a dual-core processor - see [Memory Requirements](#memory-requirements) for more information
-ImageJ version 2| Download from [https://imagej.net/ImageJ2](https://imagej.net/Downloads)
-OpenSourceOV ImageJ scripts|Download the latest version from  [https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip](https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip)
+* Folder of captured images
+* Computer with at least 4GB of RAM and a dual-core processor
+* ImageJ version 2 - download from [https://imagej.net/ImageJ2](https://imagej.net/Downloads)
+* OpenSourceOV ImageJ Toolbox - download the latest version from  [https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip](https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip)
 
 Before you start we recommend you read the [Memory Requirements](#memory-requirements) section to understand the memory requirements of image processing.
 
