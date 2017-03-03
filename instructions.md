@@ -35,7 +35,7 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
     ![](./images/7.jpg)
 
 
-7. Apply an automatic contrast to the result stack to enhance the detail. From the Image > Adjust menu select 'Brightness/Contrast...' then click the 'Auto' button. For some sequences where the differences are obvious this step isn't required.
+7. Apply an automatic contrast to the result stack to enhance the detail. From the Image > Adjust menu select 'Brightness/Contrast...' then click the 'Auto' button and then 'Apply'. For some sequences where the differences are obvious this step isn't required.
 
     ![](./images/8.jpg)
 
