@@ -1,3 +1,4 @@
 # Image Processing
 
-[Click here for instructions](./instructions.md)
+* [Image processing instructions](./instructions.md)
+* [Sequence Colouring](./colouring-sequences.md)

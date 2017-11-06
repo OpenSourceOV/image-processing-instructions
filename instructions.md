@@ -4,14 +4,14 @@
 
 * Folder of captured images
 * Computer with at least 4GB of RAM and a dual-core processor
-* ImageJ version 2 - download from [https://imagej.net/ImageJ2](https://imagej.net/Downloads)
+* Fiji version of ImageJ - download from [https://fiji.sc/](https://fiji.sc/)
 * OpenSourceOV ImageJ Toolbox - download the latest version from  [https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip](https://github.com/OpenSourceOV/imagej-scripts/archive/master.zip)
 
 Before you begin read the [Memory Requirements](#memory-requirements) section to understand the memory requirements of image processing.
 
 ## Instructions
 
-1. Follow the [ImageJ Installation Instructions](https://imagej.net/Downloads#Installation) to install ImageJ.
+1. Install ImageJ.
 
 2. Follow the instructions at [https://github.com/OpenSourceOV/imagej-scripts](https://github.com/OpenSourceOV/imagej-scripts) to install the OSOV Toolbox in ImageJ (don't forget to restart ImageJ).
 
