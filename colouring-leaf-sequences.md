@@ -19,7 +19,7 @@
 
     ![](./imagesv2/colouring/2.png)
 
-3. Under the scale option select 'Slice'. This will divide the LUT color range by the number of slices i.e. distribute the LUT colour range across the entire sequence regardless of which slices contain embolism. Select 'Cavitation Events' to ignore empty slices.
+3. Under the scale option select 'Slice'. This will divide the LUT color range by the number of slices i.e. distribute the LUT colour range across the entire sequence regardless of which slices contain embolism. Select 'Cavitation Events' to ignore empty slices, although be aware that this would generate a figure that had slices unevenly distributed in time.
 
     ![](./imagesv2/colouring/3.png)
 
@@ -37,7 +37,7 @@
 
   ![](./imagesv2/colouring/8.png)
 
-7. Scroll through the stack and note the number of a few key slices that demonstrate the progression of events. The slice number can be found at the top left of the stack window e.g. 24/534 = slice number 24. 
+7. Scroll through the stack and note the slice number for slices at regular intervals of time/water potential to demonstrate the progression of events. The slice number can be found at the top left of the stack window e.g. 24/534 = slice number 24. 
   
 8. From the Stacks > Tools menu select the 'Make Substack...' function and enter a comma-separated list of the slice numbers from the previous step and press OK.
 
