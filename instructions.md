@@ -63,10 +63,6 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
 
     ![](./imagesv2/9.png)
 
-10. Now we can see events in the differences stack. Scroll through to find the clearest embolism event. 
-    
-    ![](./imagesv2/10.png)
-
 11. Now we can see events in the differences stack. Scroll through to find the clearest embolism event. 
     
     ![](./imagesv2/10.png)
