@@ -11,105 +11,160 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
 
 ## Instructions
 
-1. Install ImageJ.
+1. Install and open Fiji.
 
-2. Follow the instructions at [https://github.com/OpenSourceOV/imagej-scripts](https://github.com/OpenSourceOV/imagej-scripts) to install the OSOV Toolbox in ImageJ (don't forget to restart ImageJ).
+  ![](./imagesv2/A1.png)
 
-3. Import the captured images as a stack using the Import > Image Sequence function. Select the "Convert to 8-bit Grayscale" option.
+2. Follow the instructions at [https://github.com/OpenSourceOV/imagej-scripts](https://github.com/OpenSourceOV/imagej-scripts) to install the OSOV Toolbox in Fiji (don't forget to restart Fiji).
 
-    ![](./images/1.jpg)
+3. Import the captured images as a stack using the Import > Image Sequence function. 
 
-    ![](./images/2.jpg)
+    ![](./imagesv2/A2.png)
 
-4. Load the OSOV Toolbox by clicking the '>>' icon to the right of the toolbar and selecting 'OSOV Toolbox'.
+    ![](./imagesv2/A3.png)
+
+    Depending on the image size and number of files you may need to scale the images and/or check the option to Convert to 8-bit on import. See [Memory Requirements](#memory-requirements) for more information.
+
+5. If you didn't choose to Convert the images to 8-bit on import then convert the stack to 8-bit now.
     
-    ![](./images/3.jpg)
+    ![](./imagesv2/B1.png)
 
-5. Crop the image as necessary
-
-    ![](./images/6.jpg)
-
-
-6. The OSOV Toolbox icon (green cube) will appear on the toolbar menu. Click the icon and choose the **Image Difference** function. Convert the resulting stack of image differences to an 8-bit image using the Image > Type > 8-bit function from the menu.
+4. Load the OSOV Toolbox by clicking the '>>' icon to the right of the toolbar and selecting 'OSOV Toolbox'. The OSOV Toolbox icon (green cube) will appear on the toolbar menu.
     
-    ![](./images/7.jpg)
+    ![](./imagesv2/B2.png)
 
+    ![](./imagesv2/B3.png)
 
-7. Apply an automatic contrast to the result stack to enhance the detail. From the Image > Adjust menu select 'Brightness/Contrast...' then click the 'Auto' button and then 'Apply'. For some sequences where the differences are obvious this step isn't required.
+6. Click the green OSOV Toolbox icon and choose the **Image Difference v2** function. Select whether you are processing a leaf (for transmitted light) or stem (reflected light).
+    
+    ![](./imagesv2/3.png)
 
-    ![](./images/8.jpg)
+6. The difference function will run and produce a stack that looks black with seemingly no detail. This is a stack of pixel differences between images and the differences are in most cases very small - hence the mainly black image i.e. most pixels in this stack will be low numbers (the lower the pixel value the darker it is).
+    
+    ![](./imagesv2/4.png)
 
-    ![](./images/9.jpg)
+7. Create a copy of the differences stack using the Duplicate function. Ensure you check 'Duplicate stack' in the options dialog.
 
-8. Run through the stack (using the scroll bar at the bottom of the stack window) to find a stack slice with a cavitation event. In this case most vein orders rapidly embolised within a single 5 minute interval (1 slice of the stack).
+    ![](./imagesv2/5.png)
 
-    ![](./images/10.jpg)
+    ![](./imagesv2/6.png)
 
-9. Use the Image > Adjust > Threshold... tool to select as many of the pixels representing embolism as possible. If auto-thresholding is preferred then the intermodes method works well for some images. Note however that at this stage it will not be possible to exclude noise and non-embolism events from thresholding. These will be removed later. The goal at this stage is simply to extract as many of the pixels we're interested in as possible.
+8. Arrange the stacks side by side.
+    
+    ![](./imagesv2/7.png)
 
-    ![](./images/11.jpg)
+9. Now to reveal the differences. From the Image > Adjust menu select the Threshold option. 
+    
+    ![](./imagesv2/8.png)
 
-    ![](./images/12.jpg)
+    The threshold tool provides you with a means of selecting pixels based on their value. The box at the top of the options window is a histogram showing you the counts of pixels at different values. As you can see here most the pixels are at the very low end of the range as we would expect (since the differences in the xylem associated with embolism formation are very subtle). The red outline in the box shows you the pixel value range being thresholded (selected) and this corresponds to the values in the two input boxes undernerath which indicate that pixels are thresholded (selected) in the range 0 to 6. All pixels with those values are highlighted in the image in red.
 
-10. Run the Analyze > Analyze Particles... function from the menu setting the Size option to '0-Infinity', Circularity to '0.00-1.00' and the Show option to Masks. In effect this copies all the pixels we're interested in to a new binary stack (all pixels set to black). 
+    Remember, this is a stack of **differences**, so what the thresholding tool is doing in this case is selecting a range in magnitude of differences i.e. small difference between images are pixels closer to zero. Since we're not interested in pixels that *didn't* change - we want to see what *did* change - let's choose a more appropriate *differences* range: 2 to 255.
 
-    ![](./images/13.jpg)
+    ![](./imagesv2/9.png)
 
-    ![](./images/14.jpg)
+10. Now we can see events in the differences stack. Scroll through to find the clearest embolism event. 
+    
+    ![](./imagesv2/10.png)
 
-11. Remove the random noise in the new stack by running the Process > Noise > Remove Outliers... function from the menu. Set the Which outliers option to Dark. The Radius and Threshold options can usually be left as is but check the Preview option and increase/decrease the Radius option to determine an optimum value.
+11. Now we can see events in the differences stack. Scroll through to find the clearest embolism event. 
+    
+    ![](./imagesv2/10.png)
 
-    ![](./images/15.jpg)
+12. We now want to extract all the pixels we're interested in and get rid of any additional information we don't need. To do this we're going to convert the image to a binary image (where pixel values can only be 0 or 255) using the Convert to Mask tool: 
+    
+    ![](./imagesv2/11.png)
 
-    ![](./images/16.jpg)
+13. How the Convert to Mask tool chooses whether a pixel should be converted to 0 or 255 depends on the thresholding method. Select different methods in the drop down to see their effect on the image. Choose a method that provides the best structural resolution (i.e. least degradation of the embolism event) and least noise. A little noise is fine, we will deal with it in later steps. **IMPORTANT** Uncheck the 'Calculate threshold for each image' option.
 
-    ![](./images/17.jpg)
+    ![](./imagesv2/13.png)
+    
+    Not so good.
+    ![](./imagesv2/14.png)
 
-12. Manually remove any remaining noise and artifacts
+    This one looks the best.
+    ![](./imagesv2/15.png)
+
+14. You should now have a binary image with a white background and black pixels that represent the pixels we're interested in. If you have a black background then select Edit > Invert from the menu.
+
+15. Synchronise the two differences stacks.
+
+    ![](./imagesv2/17.png)
+
+    Use the shift (windows) or command key (mac) to select multiple items in the list. Select the two windows corresponding to the differences stacks. Move the Synchronise Windows window out of the way (but it needs to be kept open).
+    ![](./imagesv2/18.png)
+
+16. Reveal the differences in the original (duplicate) stack following the same procedure for thresholding to highlight the pixel differences we're interested in.
+
+    ![](./imagesv2/20.png)
+
+17. Move the slider in either image - they should both move in sync - and find an embolism event.
+
+    ![](./imagesv2/21.png)
+
+18. Select the binary image and then from the Process menu choose Outlier removal to remove some of the remaining noise.
+
+    ![](./imagesv2/22.png)
+
+    Choose Dark pixels and adjust the radius until as much of the noise is removed without degrading too much of the original structure - compare with the original stack. A value of 1 or 2 for the radius is normal. Toggle the preview check to compare the effect.
+
+    ![](./imagesv2/23.png)
+
+    Choose OK and process entire stack.
+    
+    ![](./imagesv2/24.png)
+
+19. Depending on the quality of the capture sequence you may at this point be done with the image processing. If there is little or no noise then continue to the next step. However, in our sequence you can still see that some non-embolism pixels remain, mostly the result of scanning artefacts and leaf shrinkage. These pixels are are not randomly distributed, which makes them difficult to remove using standard noise removal techniques without distorting and affecting the pixels we want to keep. In this case we now need to manually clean the stack.
 
     See the section below on [Manually removing noise and artifacts](#manually-removing-noise-and-artifacts)
 
-15. Measure embolism total area per slice.
+20. At this point you should have a clean stack. Save the stack as a tiff for backup.
 
-    **Set the scale to 1:1** i.e. scaled to the pixel resolution. The unit of length is pixel but can be left as unit.
-
-    ![](./images/27.jpg)
+    ![](./imagesv2/34.png)
     
-    ![](./images/28.jpg)
+21. Now sum all the non-zero pixels for each slice in the stack to give us embolism area per image. Close all windows except for the cleaned stack and from the Analyze menu select 'Set Measurements...' and ensure that Area and Limit to threshold are both checked. Press OK.
 
-    **Set measurements options** 
+    ![](./imagesv2/59.png)
     
-    Select Area as a measurement and select the Limit to Threshold option.
+    ![](./imagesv2/61.png)
 
-    ![](./images/29.jpg)
+22. Set the scale to 1:1 i.e. 1 pixel = 1
+    
+    ![](./imagesv2/62.png)
+    ![](./imagesv2/63.png)
 
-    ![](./images/30.jpg)
+23. Use the threshold hold tool to threshold the non-zero pixels i.e. only embolism events should be highlighted.
 
-    **Apply a threshold to select the black pixels**
+    ![](./imagesv2/64.png)
+    ![](./imagesv2/65.png)
 
-    Using the Image > Adjust > Threshold... tool select all black pixels (adjust the sliders until all the pixels are red highlighted)
+24. From the OSOV Toolbox (top right green icon) choose 'Measure Stack'.
 
-    ![](./images/26.jpg)
+    ![](./imagesv2/66.png)
 
-    **Measure**
+25. Save the results to a file for analysis.
+    
+    ![](./imagesv2/68.png)
+    ![](./imagesv2/69.png)
 
-    From the OSOV Toolbox select 'Measure Stack'
+26. Done! Now...
 
-    ![](./images/31.jpg)
+26. [Analyse the areas to produce an optical vulnerability curve](https://github.com/OpenSourceOV/analysis-instructions)
+    
+    ![](./imagesv2/wp_area_plot.jpg)
 
-16. Save the Results to a file for analysis.
+27. [Create embolism maps and figures](https://github.com/OpenSourceOV/image-processing-instructions/blob/master/colouring-sequences.md)
 
-    ![](./images/33.jpg)
+    ![](./imagesv2/45.png)
 
-17. Done!
 
 ## Memory Requirements
 
 When importing a sequence of images using the Import > Image Sequence function ImageJ will load all the images into the computer's RAM. So if you have 100 images that are 2MB each you will need a total of 200MB of available RAM. Most modern computers have around 2-4GB of RAM or 2000-4000MB so 200MB is fine.
 
-Once the images are loaded you will need at least 4 or 5 times the memory to run the Image Difference script which creates two duplicates of the stack (to subtract one from the other) and creates a third 32-bit stack which is much larger still.
+However, once the images are loaded you will need at least **4 or 5 times** the memory to run the Image Difference v2 script which creates two duplicates of the stack (to subtract one from the other) plus a third output stack.
 
-A typical sequence might contain 1000+ images at 7MB each, so 1000 x 7 = 7000MB or 7GB which will require more RAM than most computers have installed by default. 
+So, a typical sequence might contain 1000+ images at 5MB each, so 1000 x 5 = 5000MB or 5GB and then x 4 (the original plus the three generated stacks) = 20GB! Most computers have around 4-8GB of RAM so...
 
 ![](./images/5.jpg)
 
@@ -117,7 +172,7 @@ If you run out of memory there are a few options:
 
 ### Increase ImageJ memory allocation**
 
-From the Options menu choose **Memory & Threads...** and check the maximum memory value and increase up to ~80% of the RAM of the computer.
+ImageJ may not be using as much of the RAM as it could be. From the Options menu choose **Memory & Threads...** and check the maximum memory value and increase up to ~80% of the RAM of the computer.
 
 ![](./images/memory_option.jpg)
 
@@ -127,7 +182,7 @@ RAM is relatively cheap and with most computers you can upgrade to 8GB, some up 
 
 ### Process the sequence in sections
 
-Use the 'Starting image' and 'Number of images' option in the Sequence Options dialog that appears when initiating a sequence import. For example, to import images 1-100 set the Number of images to 100 and leave Starting image at 1. To import images 200-300 set Number of images to 100 and the Starting image to 200 and so on. 
+Use the 'Starting image' and 'Number of images' option in the Sequence Options dialog that appears when initiating a sequence import. For example, to import images 1-100 set the Number of images to 100 and leave Starting image at 1. To import images 200-300 set Number of images to 100 and the Starting image to 200 and so on. Make sure you select the same thresholding methods so the processing is consistent between sections.
 
 ![](./images/sequence_options_sections.jpg)
 
@@ -145,7 +200,7 @@ Crop the stack to minimise the number of pixels that require processing. In this
 
 ### Process a sub region
 
-Run the Image Difference tool with a region selected using the rectangle tool to process only a region of the image. This can be useful if a good distribution of vein orders can be found within region.
+Run the Image Difference v2 tool with a region selected using the rectangle tool to process just that region of the image. This can be useful if a good distribution of vein orders can be found within a smaller area.
 
 ![](./images/virtual_stack_init_sub_region_difference.jpg)
 
@@ -153,11 +208,11 @@ Run the Image Difference tool with a region selected using the rectangle tool to
 
 ### Use a virtual stack
 
-Instead of loading every image in the sequence into memory the images can be imported alternatively as a **Virtual Stack**. The advantage is that each image is only loaded into memory as required and the stack loads instantly. The disadvantage is that scrolling through the sequence (using the scrollbar at the bottom of the stack window) becomes slow and halting as each image is loaded and unloaded.
+Instead of loading every image in the sequence into memory the images can be alternatively imported as a **Virtual Stack**. The advantage is that each image is only loaded into memory as required and the stack loads instantly. The disadvantage is that scrolling through the sequence (using the scrollbar at the bottom of the stack window) becomes slow and halting as each image is loaded and unloaded.
 
-The Image Difference function can be applied to a virtual stack, however this function will still perform the same internal duplication of the stack created 2 non-virtual stacks in addition to the third new differences stack. So by using a virtual stack you only reduce the memory by the size of 1 stack. 
+The Image Difference v2 function can be applied to a virtual stack, however this function will still perform the same internal duplication of the stack creating 2 non-virtual stacks in addition to the third new differences stack. So by using a virtual stack you only reduce memory use by the size of 1 stack. 
 
-Using a virtual stack works best when processing a sub region (as described above) and a typical workflow would be to apply the Image Difference to several regions (but one at a time) to determine the best distribution of events in the sequence.
+Using a virtual stack works best when processing a sub region (as described above) and a typical workflow would be to apply the Image Difference v2 to several regions (but one at a time) to determine the best distribution of events in the sequence.
 
 The virtual stack option can be enabled in the Sequence Options dialog by selecting the 'Use Virtual Stack' checkbox.
 
@@ -165,51 +220,91 @@ The virtual stack option can be enabled in the Sequence Options dialog by select
 
 ## Manually removing noise and artifacts
 
-Outlier removal will remove almost all the randomly distributed noise but there will be groups of non-random pixels remaining that must be removed manually. These are typically the result of leaf shrinkage, sample movement (e.g. being knocked) and insects walking across the sample during a capture. If banding is visible this may be caused by 'voltage ripple', an artifact of the AC to DC power convertion in the power adapter that supplies current to the LEDs. Check the regulated power supply or switch to a battery. 
+Most noise removal techniques are excellent at removing randomly distributed noise. Often the 'Remove Outliers' function is sufficient enough to remove this type of noise. Non-random noise that is not stricktly noise typically results from leaf shrinkage, sample movement (e.g. being knocked), scanning or camera or power fluctuation ('voltage ripple') artefacts and, most annoyingly, insects walking across the sample during a capture. 
 
-There are four tools in the OSOV Toolbox to expedite the process of manual cleaning:
+Although it may be possible to remove these non-embolism pixels using noise removal processes it often comes at the cost of degrading or altering the embolism 'signal', meaning embolism events become less well resolved and further from the 'real' original signal.
+
+In this case it's better to remove as much of the random noise as possible and then deal with the non-random pixels manually by cleaning each slice one by one.
+
+This process doesn't have to be that arduous, there are four tools in the OSOV Toolbox to expedite the process of manual cleaning and once these are linked to keyboard shortcuts you can work through a stack relatively quickly.
+
+### OSOV Cleaning Functions
 
 * **Clear Slice** - removes everything from the current stack slice (image)
 * **Clear Slices** - removes everything from slices in the slice number range provided. The slice number is displayed at the top of the stack window.
 * **Save Slices** - will clear all slices *except* the slices specified in the comma-separated list.
 * **Clear Outside** - will clear everything outside the area currently selected. This tool is best used with the Selection Brush set to ~100 pixels. Select all the events on the image then use Clear Outside to remove everything else. Note this works differently to the ImageJ Clear Outside function under the Edit menu.
-
-    To choose the selection brush tool right-click the Oval icon on the toolbar and select Selection Brush Tool.
-
-    ![](./images/select_selection_brush.jpg)
-    
-    Double-click the Selection Brush Tool to set the tool options.
-
-    ![](./images/selection_brush_size.jpg)
-
-    Trace around the events. Use the Shift or Alt(Command key for Apple) to add or remove selections.
-
-    ![](./images/selection_brush_trace.jpg)
-    
-    From the OSOV Toolbox choose the Clear Outside function.
-
-    ![](./images/selection_clear_outside.jpg)
     
 
-### Workflow
+### Cleaning Workflow
 
-The first thing to do is arrange all three windows - the original stack, the image difference stack and the extracted pixels stack (the one to be processed) - and synchronise them so as you progress through one they all advance for easy comparison.
+1. Put the binary differences stack and the original differences stack side-by-side for comparison during the cleaning procedure.
 
-![](./images/18.jpg)
+    ![](./imagesv2/cleaning/1.png)
 
-![](./images/19.jpg)
+2. Synchronise the two stacks so they track each other as you progress through the stack you're working on.
 
-Starting at the first slice work your way through the stack checking the difference stack to ensure that you're only removing artifacts and noise, not embolism events. 
+    ![](./imagesv2/cleaning/2.png)
+    
+    You need to use the shift (windows) or command (mac) key to select multiple items from the list. Select the two windows relevant to the two differences stacks.
 
-![](./images/21.jpg)
+    ![](./imagesv2/cleaning/3.png)
+    
+    If they are in sync you should see a cursor appear on both images
+ 
+    ![](./imagesv2/cleaning/4.png)
+    
+    Scroll through one of the stacks to bring the stack positions into sync (i.e. they should be on the same slice).
+ 
+    ![](./imagesv2/cleaning/5.png)
 
-To streamline the workflow set the four cleaning tools as keyboard shortcuts using the Plugins > Shortcuts > Add Shortcut... function. Used in combination with cursor keys to move between slices shortcuts can significantly reduce the total processing time.
+3. In this example stack the first 117 slices contain non-embolism pixels resulting from scanning artefacts and leaf shrinkage. We'll use the 'Clear Slices' function to do a bulk clear of those slices.
 
-![](./images/add_shortcut.jpg)
+    ![](./imagesv2/cleaning/6.png)
+    ![](./imagesv2/cleaning/7.png)
+    ![](./imagesv2/cleaning/8.png)
 
-![](./images/set_shortcut.jpg)
+    You can also do this the other way around and use the 'Save Slices' tool to select the slices you **want to keep** and then it'll clear all other slices.
 
+4. Going through each of the remaining slices we draw around the pixels we want to keep and clear everything else. This is best done with the Selection Brush tool.
 
+    Right-click the Oval, elliptical and brush selections icon on the toolbar and select 'Selection Brush Tool'
+    
+    ![](./imagesv2/cleaning/9.png)
 
+    Now double-click the icon again to bring up the brush size options dialog
+    
+    ![](./imagesv2/cleaning/10.png)
 
+    Set the brush size to somewhere in the 100-200 pixels range depending on the resolution of your image.
 
+    ![](./imagesv2/cleaning/11.png)
+    
+    Draw around the pixels you want to keep. 
+    
+    ![](./imagesv2/cleaning/12.png)
+
+    See the [ImageJ manual for selection tools](https://imagej.nih.gov/ij/docs/guide/146-19.html) for more information on ways to use the selection brush. For example here Alt is used to remove pixels from the selection.
+    
+    ![](./imagesv2/cleaning/13.png)
+
+5. Use the OSOV Clear Outside tool to remove everything else. Note this works differently to, and should be used instead of, the ImageJ Clear Outside function under the Edit menu.
+
+    ![](./imagesv2/cleaning/14.png)
+    ![](./imagesv2/cleaning/15.png)
+
+6. Use keyboard shortcuts instead of clicking the OSOV toolbar.
+    
+    ![](./imagesv2/cleaning/17.png)
+    ![](./imagesv2/cleaning/18.png)
+    
+    Click 'OK' then repeat the procedure to add the next shortcut.
+    
+    ![](./imagesv2/cleaning/17.png)
+    ![](./imagesv2/cleaning/19.png)
+
+7. Continue through the stack manually cleaning each slice. Always check what you are removing against the reference stack.
+
+8. Done! 
+
+9. Continue with processing. 

@@ -1,4 +1,4 @@
-# Colouring Sequences
+# Colouring Sequences (stem example)
 
 Often you will want to display event sequences in periods of time or water potential: 
 
