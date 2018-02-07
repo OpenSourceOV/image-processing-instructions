@@ -110,7 +110,7 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
     
     ![](./imagesv2/24.png)
 
-19. Depending on the quality of the capture sequence you may at this point be done with the image processing. If there is little or no noise then continue to the next step. However, in our sequence you can still see that some non-embolism pixels remain, mostly the result of scanning artefacts and leaf shrinkage. These pixels are are not randomly distributed, which makes them difficult to remove using standard noise removal techniques without distorting and affecting the pixels we want to keep. In this case we now need to manually clean the stack.
+19. Depending on the quality of the capture sequence you may at this point be done with the image processing. If there is little or no noise then continue to the next step. However, in our sequence you can still see that some non-embolism pixels remain, mostly the result of scanning artefacts and leaf shrinkage. These pixels are not randomly distributed, which makes them difficult to remove using standard noise removal techniques without distorting and affecting the pixels we want to keep. In this case we now need to manually clean the stack.
 
     See the section below on [Manually removing noise and artifacts](#manually-removing-noise-and-artifacts)
 
@@ -166,7 +166,7 @@ So, a typical sequence might contain 1000+ images at 5MB each, so 1000 x 5 = 500
 
 If you run out of memory there are a few options:
 
-### Increase ImageJ memory allocation**
+### Increase ImageJ memory allocation
 
 ImageJ may not be using as much of the RAM as it could be. From the Options menu choose **Memory & Threads...** and check the maximum memory value and increase up to ~80% of the RAM of the computer.
 
@@ -216,7 +216,7 @@ The virtual stack option can be enabled in the Sequence Options dialog by select
 
 ## Manually removing noise and artifacts
 
-Most noise removal techniques are excellent at removing randomly distributed noise. Often the 'Remove Outliers' function is sufficient enough to remove this type of noise. Non-random noise that is not stricktly noise typically results from leaf shrinkage, sample movement (e.g. being knocked), scanning or camera or power fluctuation ('voltage ripple') artefacts and, most annoyingly, insects walking across the sample during a capture. 
+Most noise removal techniques are excellent at removing randomly distributed noise. Often the 'Remove Outliers' function is sufficient to remove this type of noise. Non-random noise (not strictly 'noise') typically results from leaf shrinkage, sample movement (e.g. being knocked), scanning, camera or power fluctuation ('voltage ripple') artefacts and, most annoyingly, insects walking across the sample during capture. 
 
 Although it may be possible to remove these non-embolism pixels using noise removal processes it often comes at the cost of degrading or altering the embolism 'signal', meaning embolism events become less well resolved and further from the 'real' original signal.
 
