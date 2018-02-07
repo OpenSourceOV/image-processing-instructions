@@ -242,19 +242,19 @@ This process doesn't have to be that arduous, there are four tools in the OSOV T
 
     ![](./imagesv2/cleaning/2.png)
     
-    You need to use the shift (windows) or command (mac) key to select multiple items from the list. Select the two windows relevant to the two differences stacks.
+    Use the shift (windows) or command (mac) key to select multiple items from the list. Select the two windows relevant to the two differences stacks.
 
     ![](./imagesv2/cleaning/3.png)
     
-    If they are in sync you should see a cursor appear on both images
+    If they are in sync you should see a cursor appear on both images.
  
     ![](./imagesv2/cleaning/4.png)
     
-    Scroll through one of the stacks to bring the stack positions into sync (i.e. they should be on the same slice).
+    Scroll through one of the stacks to bring the stack positions into sync. They should be on the same slice number.
  
     ![](./imagesv2/cleaning/5.png)
 
-3. In this example stack the first 117 slices contain non-embolism pixels resulting from scanning artefacts and leaf shrinkage. We'll use the 'Clear Slices' function to do a bulk clear of those slices.
+3. In this example stack the first 117 slices contain non-embolism pixels resulting from scanning artefacts and leaf shrinkage. We'll use the 'Clear Slices' function to bulk clear these slices.
 
     ![](./imagesv2/cleaning/6.png)
     ![](./imagesv2/cleaning/7.png)
