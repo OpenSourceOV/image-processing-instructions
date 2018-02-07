@@ -78,7 +78,7 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
     Not so good.
     ![](./imagesv2/14.png)
 
-    This one looks the best.
+    This one provides the best balance between resolution and noise.
     ![](./imagesv2/15.png)
 
 14. You should now have a binary image with a white background and black pixels that represent the pixels we're interested in. If you have a black background then select Edit > Invert from the menu.
