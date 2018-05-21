@@ -95,7 +95,7 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
 
     Applying a thresholding algorithm reduces selection bias because the selection of pixels is based on probabilty distributions rather than a visual estimation of the most appropriate range of pixels to select. 
 
-    To do this chooose the 'Convert to mask' tool. This will convert the image to a binary image where pixels are either 0 (black) or 255 (white).
+    To do this choose the 'Convert to mask' tool. This will convert the image to a binary image where pixels are either 0 (black) or 255 (white).
     
     ![](./imagesv2/11.png)
 
