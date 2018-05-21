@@ -67,11 +67,39 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
     
     ![](./imagesv2/10.png)
 
-12. We now want to extract all the pixels we're interested in and get rid of any additional information we don't need. To do this we're going to convert the image to a binary image (where pixel values can only be 0 or 255) using the Convert to Mask tool: 
+12. We now want to extract all the pixels we're interested in and get rid of any additional information we don't need. We can either do this manually or by using a thresholding algorithm. 
+
+    **Manual**
+
+    In previous steps we thresholded pixels in the range 2 to 255. This is the broadest possible range of values in which embolism events might be revealed, however much of these pixel differences will be the result of noise. The bulk of noise will be in the lower end of the pixel difference range, normally 1-10. Unfortunately this range will also contain embolism events, so we can't just select pixel differences in the range 11-255 to exclude all the noise otherwise we'll lose the data as well. Additionally, the distribution of noise in that initial 1-10 range will depend on the quality of the light sensor used to capture the images. These images were captured using a high-end document scanner where the noise is typically very small. So actually for these images the range 2-255 is acceptable. For the raspberry pi clamp camera a range 6-255 is more appropriate since the range 1-6 contains a lot of noise. For material that has good light penetration and strong events - where each event results in big pixel differences, you may be able to select a higher range e.g. 10-255. 
+    
+    For your images you can now adjust the range to whatever is appropriate. Change the threshold range and see how it affects the embolism event revealed in the image difference. You want a balance between structure and noise: if you decrease the range you'll start to lose the structure and definition of the embolism event, but decreasing the range will result in more noise coming through. If you are unclear about what is noise and what are embolism events and are concerned about introducing bias in the selection then apply a thresholding algorithm (below).
+
+    With an appropriate range selected you now extract those pixels using the analyze particles function of image J:
+
+    ![](./imagesv2/cleaning/24.jpeg)
+
+    Make sure the size and circularity options are as below, and under 'Show' choose 'Masks'.
+
+    ![](./imagesv2/cleaning/23.jpeg)
+
+    The effect of this function is that it will transfer all thresholded pixels to a new stack and set each of those pixels to a value of 0 (black) regardless of what the original pixel value was. This is now a binary image.
+
+    ![](./imagesv2/cleaning/22.jpeg)
+    
+    ![](./imagesv2/cleaning/21.jpeg)
+
+    Done. Now you can continue to step 14.
+
+    **Using a Thresholding Algorithm**
+
+    Applying a thresholding algorithm reduces selection bias because the selection of pixels is based on probabilty distributions rather than a visual estimation of the most appropriate range of pixels to select. 
+
+    To do this chooose the 'Convert to mask' tool. This will convert the image to a binary image where pixels are either 0 (black) or 255 (white).
     
     ![](./imagesv2/11.png)
 
-13. How the Convert to Mask tool chooses whether a pixel should be converted to 0 or 255 depends on the thresholding method. Select different methods in the drop down to see their effect on the image. Choose a method that provides the best structural resolution (i.e. least degradation of the embolism event) and least noise. A little noise is fine, we will deal with it in later steps. **IMPORTANT** Uncheck the 'Calculate threshold for each image' option.
+    Now we have the option of chosing the thresholding method. Choose a method that provides the best structural resolution (i.e. least degradation of the embolism event) and least noise. A little noise is fine, we will deal with it in later steps. **IMPORTANT** Uncheck the 'Calculate threshold for each image' option.
 
     ![](./imagesv2/13.png)
     
@@ -80,6 +108,8 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
 
     This one provides the best balance between resolution and noise.
     ![](./imagesv2/15.png)
+
+    Done.
 
 14. You should now have a binary image with a white background and black pixels that represent the pixels we're interested in. If you have a black background then select Edit > Invert from the menu.
 
