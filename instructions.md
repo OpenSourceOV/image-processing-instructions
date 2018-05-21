@@ -99,7 +99,7 @@ Before you begin read the [Memory Requirements](#memory-requirements) section to
     
     ![](./imagesv2/11.png)
 
-    Now we have the option of chosing the thresholding method. Choose a method that provides the best structural resolution (i.e. least degradation of the embolism event) and least noise. A little noise is fine, we will deal with it in later steps. **IMPORTANT** Uncheck the 'Calculate threshold for each image' option.
+    Now we have the option of choosing the thresholding method. Choose a method that provides the best structural resolution (i.e. least degradation of the embolism event) and least noise. A little noise is fine, we will deal with it in later steps. **IMPORTANT** Uncheck the 'Calculate threshold for each image' option.
 
     ![](./imagesv2/13.png)
     
